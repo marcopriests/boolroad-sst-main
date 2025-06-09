@@ -1,6 +1,7 @@
 import { useContext, useState } from "react"
 import TripContext from "../contexts/TripContext"
 import TripCard from "../components/TripCard"
+import { NavLink } from "react-router-dom"
 
 
 const Homepage = () => {
@@ -26,6 +27,11 @@ const Homepage = () => {
       </ul>
 
       <br />
+
+      {/* Bottone 'Aggiungi Viaggio' */}
+      <NavLink to={'/viaggi/crea-viaggio'} id="add-button" className={`shadow`}>
+        <i className="fa-solid fa-plus text-light fs-4"></i>
+      </NavLink>
 
 
       {viaggi.map((viaggio) => {
