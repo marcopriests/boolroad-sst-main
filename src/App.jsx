@@ -6,6 +6,7 @@ import Homepage from "./pages/Homepage";
 import TripDetail from "./pages/TripDetail";
 import TripContext from "./contexts/TripContext";
 import AddViaggio from "./pages/AddViaggio";
+import AddPartecipante from "./pages/AddPartecipante";
 
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
               <Route index element={<Homepage />} />
               <Route path="/viaggi/crea-viaggio" element={<AddViaggio />} />
               <Route path="/viaggi/:id" element={<TripDetail />} />
+              <Route path="/viaggi/:id/aggiungi-partecipante" element={<AddPartecipante />} />
 
             </Route>
 

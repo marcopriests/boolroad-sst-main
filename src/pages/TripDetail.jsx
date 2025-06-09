@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, NavLink, Link } from 'react-router-dom'
 import TripContext from '../contexts/TripContext'
 import PartecipanteCard from '../components/PartecipanteCard'
 
@@ -77,6 +77,10 @@ const TripDetail = () => {
                 </div>
                 <h6 className={`text-uppercase text-center text-${statoColor}`} id='stato-viaggio'>{statoViaggio}</h6>
 
+                {/* Bottone 'Aggiungi Partecipante' */}
+                {statoViaggio === 'futuro' && <NavLink to={`/viaggi/${id}/aggiungi-partecipante`} id="add-button" className={`shadow`}>
+                    <i className="fa-solid fa-plus text-light fs-4"></i>
+                </NavLink>}
 
                 <div className="col-12">
                     <div className="d-flex justify-content-between mb-2">
