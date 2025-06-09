@@ -80,3 +80,19 @@ ul {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+#stato-viaggio {
+  margin-top: -10px;
+}
+
+.text-green {
+  color: rgb(59, 131, 59);
+}
+
+.text-red {
+  color: rgb(212, 76, 76);
+}
+
+.text-orange {
+  color: rgb(245, 159, 60);
+}

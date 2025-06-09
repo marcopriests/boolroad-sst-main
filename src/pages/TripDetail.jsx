@@ -10,7 +10,7 @@ const TripDetail = () => {
 
     const [trip, setTrip] = useState({})
 
-    const [searchInput, setSearchInput] = useState("")
+    const [searchInput, setSearchInput] = useState('')
 
     const [partecipantiFiltrati, setPartecipantiFiltrati] = useState([])
 
@@ -39,40 +39,82 @@ const TripDetail = () => {
         }
     }, [searchInput, trip.partecipanti])
 
+    const partenza = new Date(trip.data_partenza)
+    const rientro = new Date(trip.data_arrivo)
+    const today = new Date()
+
+    let statoViaggio, statoColor
+
+    if (today >= partenza && today <= rientro) {
+        // in corso
+        statoViaggio = 'in corso'
+        statoColor = 'orange'
+
+    }
+
+    if (today > rientro) {
+        // terminato
+        statoViaggio = 'terminato'
+        statoColor = 'red'
+
+    }
+
+    if (today < partenza) {
+        // futuro
+        statoViaggio = 'futuro'
+        statoColor = 'green'
+    }
 
     return (
         <>
-            <div className="row gy-4 my-3">
+            <div className="row mt-2 px-3 gy-3">
+                <div className="d-flex justify-content-between align-items-center">
+                    <Link to={`/`}><i className="fa-solid fa-arrow-left text-dark fs-4"></i></Link>
+                    <h4 className="fw-bold text-center">{trip.nome}</h4>
+
+                    {/* questo serve così per centrare il testo. È una puzzonata, lo so */}
+                    <div></div>
+                </div>
+                <h6 className={`text-uppercase text-center text-${statoColor}`} id='stato-viaggio'>{statoViaggio}</h6>
+
+
                 <div className="col-12">
-                    <h4 className='tripTitle'>{`Partecipanti alla gita a ${trip.nome}`}</h4>
-                    <div className="form-group d-flex">
-                        <input
-                            type="text"
-                            className="form-control border border-2 border-primary rounded-0 rounded-start"
-                            placeholder="Cerca partecipante..."
-                            value={searchInput}
-                            onChange={handleChange}
-                        />
-                        <Link to={`/`}>
-                            <button
-                                className="btn btn-primary rounded-0 rounded-end"
-                                type="button"
-                            >Torna alla lista gite
-                            </button>
-                        </Link >
+                    <div className="d-flex justify-content-between mb-2">
+                        <div className='text-secondary'>{trip.luogo}</div>
+                        <div className={`badge rounded-pill badge-${trip.color_tag} px-2 mb-2 fw-medium`}>{trip.tipologia}</div>
                     </div>
+
+                    <div className="d-flex justify-content-between mb-2">
+                        <div className='mb-1'>Partenza: <b>{trip.data_partenza}</b></div>
+                        <div className='mb-1'>Rientro: <b>{trip.data_arrivo}</b></div>
+                    </div>
+
+                    <div className='mb-4'>Accompagnatore: <b>{trip.accompagnatore}</b></div>
+
+
+
+                    <h5 className='fw-bold mb-4'>Partecipanti <span className='fw-medium'>{`(${trip.partecipanti && trip.partecipanti.length})`}</span></h5>
+
+
+                    <input type="text"
+                        className="form-control border-0 rounded shadow py-2 mb-4"
+                        placeholder="Cerca partecipante..."
+                        value={searchInput}
+                        onChange={handleChange} />
+                </div>
+
+                <div id="accordion" className='mb-5'>
+                    {partecipantiFiltrati && partecipantiFiltrati.map((partecipante) => {
+                        return (
+                            <PartecipanteCard
+                                key={`person-${partecipante.id}`}
+                                partecipante={partecipante}
+                            />
+                        )
+                    })
+                    }
                 </div>
             </div>
-            <hr />
-            {partecipantiFiltrati && partecipantiFiltrati.map((partecipante) => {
-                return (
-                    <PartecipanteCard
-                        key={`person-${partecipante.id}`}
-                        partecipante={partecipante}
-                    />
-                )
-            })
-            }
         </>
     )
 }
