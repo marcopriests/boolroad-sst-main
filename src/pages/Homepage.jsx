@@ -6,9 +6,7 @@ import { NavLink } from "react-router-dom"
 
 const Homepage = () => {
 
-  const { viaggi } = useContext(TripContext)
-
-  const [tab, setTab] = useState(0)
+  const { viaggi, tab, setTab } = useContext(TripContext)
 
   const [filteredTrips, setFilteredTrips] = useState(viaggi)
   const [searchInput, setSearchInput] = useState('')

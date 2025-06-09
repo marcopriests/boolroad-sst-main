@@ -3,14 +3,14 @@ const PartecipanteCard = ({ partecipante }) => {
 
     return (
         <div className="accordion mb-3 border-0 shadow rounded">
-            <div className="accordion-item border-0 rounded">
+            <div className="accordion-item border-0">
                 <h2 className="accordion-header" id={`heading-${id}`}>
                     <button
                         className="accordion-button collapsed bg-white"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target={`#collapse-${id}`}
-                        aria-expanded="false"
+                        aria-expanded="true"
                         aria-controls={`collapse-${id}`}
                     >
                         {nome} {cognome}
@@ -20,12 +20,22 @@ const PartecipanteCard = ({ partecipante }) => {
                     id={`collapse-${id}`}
                     className="accordion-collapse collapse"
                     aria-labelledby={`heading-${id}`}
+                    data-bs-parent="#accordion"
                 >
-                    <div className="info accordion-body">
+                    <div className="info accordion-body rounded-bottom pb-1">
                         <ul className="ps-0">
-                            <li>Codice Fiscale: <b>{codice_fiscale}</b></li>
-                            <li>Telefono: <b>{telefono}</b></li>
-                            <li>Email: <b>{email}</b></li>
+                            <li>
+                                Codice Fiscale:
+                                <b> {codice_fiscale}</b>
+                            </li>
+                            <li>
+                                Telefono:
+                                <b> {telefono}</b>
+                            </li>
+                            <li>
+                                Email:
+                                <b> {email}</b>
+                            </li>
                         </ul>
                     </div>
                 </div>

@@ -1,5 +1,3 @@
-import React from 'react'
-
 const AddPartecipante = () => {
     return (
         <div className="row mt-2 px-3 gy-3">
@@ -15,6 +13,11 @@ const AddPartecipante = () => {
                     Cognome
                 </label>
                 <input type="text" className="form-control border-0 shadow py-2 mb-4" placeholder='Inserisci il cognome' required />
+
+                <label className="form-label">
+                    Codice Fiscale
+                </label>
+                <input type="text" className="form-control border-0 shadow py-2 mb-4" placeholder='Inserisci il codice fiscale' required />
 
                 <label className="form-label">
                     Numero di telefono
