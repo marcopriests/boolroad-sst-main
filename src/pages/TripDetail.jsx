@@ -71,9 +71,6 @@ const TripDetail = () => {
                 <div className="">
                     <Link to={`/`}><i className="fa-solid fa-arrow-left text-dark fs-4"></i></Link>
                     <h4 className="fw-bold text-center">{trip.nome}</h4>
-
-                    {/* questo serve così per centrare il testo. È una puzzonata, lo so */}
-                    <div><i className="fa-solid fa-arrow-left text-dark fs-4 d-none"></i></div>
                 </div>
                 <h6 className={`text-uppercase text-center text-${statoColor}`} id='stato-viaggio'>{statoViaggio}</h6>
 

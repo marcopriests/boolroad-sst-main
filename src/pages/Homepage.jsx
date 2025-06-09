@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useState, useEffect } from "react"
 import TripContext from "../contexts/TripContext"
 import TripCard from "../components/TripCard"
 import { NavLink } from "react-router-dom"
@@ -9,6 +9,23 @@ const Homepage = () => {
   const { viaggi } = useContext(TripContext)
 
   const [tab, setTab] = useState(0)
+
+  const [filteredTrips, setFilteredTrips] = useState(viaggi)
+  const [searchInput, setSearchInput] = useState('')
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setSearchInput(e.target.value)
+  }
+
+  useEffect(() => {
+    const filtered = viaggi.filter(trip => {
+      return trip.nome.toLowerCase().includes(searchInput.toLowerCase()) || trip.luogo.toLowerCase().includes(searchInput.toLowerCase())
+    })
+
+    setFilteredTrips(filtered)
+
+  }, [searchInput])
 
 
   return (
@@ -33,8 +50,10 @@ const Homepage = () => {
         <i className="fa-solid fa-plus text-light fs-4"></i>
       </NavLink>
 
+      {/* searchbar */}
+      <input type="text" className="form-control border-0 rounded-4 shadow py-3 mb-4" placeholder="Cerca viaggio..." value={searchInput} onChange={handleChange} />
 
-      {viaggi.map((viaggio) => {
+      {filteredTrips.map((viaggio) => {
         const partenza = new Date(viaggio.data_partenza)
         const rientro = new Date(viaggio.data_arrivo)
 
