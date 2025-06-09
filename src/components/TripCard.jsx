@@ -13,11 +13,12 @@ const TripCard = ({ viaggio }) => {
             <div className={`badge rounded-pill badge-${color_tag} px-2 mb-2 fw-medium`}>{tipologia}</div>
             <div className='mb-1'>Partenza: <b>{data_partenza}</b></div>
             <div className='mb-1'>Rientro: <b>{data_arrivo}</b></div>
-            <div className='mb-1'>Accompagnatore: <b>{accompagnatore}</b></div>
+            <div className='mb-1'>Partecipanti: <b>{partecipanti.length}</b></div>
 
           </div>
           <div className="card-footer py-3 bg-primary border-0">
-            <div className='text-center text-light fw-bold'>{`${partecipanti.length} partecipanti`}</div>
+            <div className='text-center text-light'>Accompagnatore:</div>
+            <div className='text-center text-light fw-bold'>{accompagnatore}</div>
           </div>
         </div>
       </div>
