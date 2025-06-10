@@ -74,11 +74,6 @@ const TripDetail = () => {
                 </div>
                 <h6 className={`text-uppercase text-center text-${statoColor}`} id='stato-viaggio'>{statoViaggio}</h6>
 
-                {/* Bottone 'Aggiungi Partecipante' */}
-                {statoViaggio === 'futuro' && <NavLink to={`/viaggi/${id}/aggiungi-partecipante`} id="add-button" className={`shadow`}>
-                    <i className="fa-solid fa-plus text-light fs-4"></i>
-                </NavLink>}
-
                 <div className="col-12">
                     <div className="d-flex justify-content-between mb-2">
                         <div className='text-secondary'>{trip.luogo}</div>
@@ -93,8 +88,14 @@ const TripDetail = () => {
                     <div className='mb-4'>Accompagnatore: <b>{trip.accompagnatore}</b></div>
 
 
+                    <div className="d-flex justify-content-between align-items-center mb-4">
+                        <h5 className='fw-bold my-0 py-0'>Partecipanti <span className='fw-medium'>{`(${trip.partecipanti && trip.partecipanti.length})`}</span></h5>
 
-                    <h5 className='fw-bold mb-4'>Partecipanti <span className='fw-medium'>{`(${trip.partecipanti && trip.partecipanti.length})`}</span></h5>
+                        {/* Bottone 'Aggiungi Partecipante' */}
+                        {statoViaggio === 'futuro' && <NavLink to={`/viaggi/${id}/aggiungi-partecipante`} className='btn btn-success btn-sm bg-main text-light shadow'>
+                            <b className="">Aggiungi partecipante</b>
+                        </NavLink>}
+                    </div>
 
 
                     <input type="text"
